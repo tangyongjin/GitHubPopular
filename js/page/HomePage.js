@@ -62,6 +62,7 @@ export default class HomePage extends Component {
         })
 
     }
+    
     onReStart(jumpToTab){
         this.props.navigator.resetTo({
             component: HomePage,
@@ -73,6 +74,7 @@ export default class HomePage extends Component {
             }
         });
     }
+
     onThemeChange(theme) {
         if (!theme)return;
         this.setState({
@@ -86,10 +88,18 @@ export default class HomePage extends Component {
     }
 
     _renderTab(Component, selectedTab, title, renderIcon) {
+
+        console.log(Component);
+        //title={title}
+        // title={title}
         return (
             <TabNavigator.Item
                 selected={this.state.selectedTab === selectedTab}
-                title={title}
+                
+
+                 title={title}
+
+
                 selectedTitleStyle={this.state.theme.styles.selectedTitleStyle}
                 renderIcon={() => <Image style={styles.tabBarIcon}
                                          source={renderIcon}/>}
@@ -97,19 +107,24 @@ export default class HomePage extends Component {
                     style={[styles.tabBarSelectedIcon, this.state.theme.styles.tabBarSelectedIcon]}
                     source={renderIcon}/>}
                 onPress={() => this.onSelected(selectedTab)}>
-                <Component {...this.props} theme={this.state.theme} homeComponent={this}/>
+                <Component {...this.props}   abcd='abcd'       theme={this.state.theme} homeComponent={this} />
             </TabNavigator.Item>
         )
     }
 
     render() {
+
+        // console.log(   PopularPage({theme:'aaa'  })   )
+        // console.log('--+22++--')
+
+
         return (
             <View style={styles.container}>
                 <TabNavigator
                     tabBarStyle={{opacity: 0.9,}}
                     sceneStyle={{paddingBottom: 0}}
                 >
-                    {this._renderTab(PopularPage, FLAG_TAB.flag_popularTab, 'Popular', require('../../res/images/ic_polular.png'))}
+                    {this._renderTab(PopularPage, FLAG_TAB.flag_popularTab, '运单XA', require('../../res/images/ic_polular.png'))}
                     {this._renderTab(TrendingPage, FLAG_TAB.flag_trendingTab, 'Trending', require('../../res/images/ic_trending.png'))}
                     {this._renderTab(FavoritePage, FLAG_TAB.flag_favoriteTab, 'Favorite', require('../../res/images/ic_favorite.png'))}
                     {this._renderTab(MyPage, FLAG_TAB.flag_myTab, 'My', require('../../res/images/ic_my.png'))}
@@ -118,6 +133,7 @@ export default class HomePage extends Component {
         )
     }
 }
+
 const styles = StyleSheet.create({
     container:{
         flex:1,

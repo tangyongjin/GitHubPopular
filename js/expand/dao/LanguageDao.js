@@ -1,6 +1,5 @@
 /**
  * RespositoryDao
- * @flow
  */
 'use strict';
 

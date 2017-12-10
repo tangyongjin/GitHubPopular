@@ -73,6 +73,7 @@ export default class NavigationBar extends Component {
             hide: false
         };
     }
+
     leftView() {
         var leftView = this.props.leftButtonTitle ?
             <Text style={styles.title}>{this.props.leftButtonTitle}</Text> : null;
@@ -91,12 +92,19 @@ export default class NavigationBar extends Component {
         if (this.props.onLeftButtonClick)this.props.onLeftButtonClick();
     }
 
+ // title={data.title}
+
     getButtonElement(data = {}, style) {
+
+        console.log(data)
+
         return (
             <View style={styles.navBarButton}>
                 {(!!data.props) ? data : (
                     <NavBarButton
+                        
                         title={data.title}
+
                         style={[data.style, style,]}
                         tintColor={data.tintColor}
                         handler={data.handler}/>
@@ -105,6 +113,7 @@ export default class NavigationBar extends Component {
         );
     }
 
+//{this.props.title}
     render() {
         let statusBar = !this.props.statusBar.hidden ?
             <View style={styles.statusBar}>
@@ -132,6 +141,7 @@ export default class NavigationBar extends Component {
         )
     }
 }
+
 class NavBarButton extends Component {
     render() {
         const {style, tintColor, margin, title, handler} = this.props;
@@ -180,6 +190,7 @@ const styles = StyleSheet.create({
         // shadowColor: '#55ACEE',
         // shadowOpacity: 0.8,
     },
+
     navBarTitleContainer: {
         alignItems: 'center',
         justifyContent: 'center',
