@@ -89,15 +89,13 @@ export default class HomePage extends Component {
 
     _renderTab(Component, selectedTab, title, renderIcon) {
 
-        console.log(Component);
-        //title={title}
-        // title={title}
+        
         return (
             <TabNavigator.Item
                 selected={this.state.selectedTab === selectedTab}
                 
 
-                 title={title}
+                title={title}
 
 
                 selectedTitleStyle={this.state.theme.styles.selectedTitleStyle}
@@ -114,17 +112,14 @@ export default class HomePage extends Component {
 
     render() {
 
-        // console.log(   PopularPage({theme:'aaa'  })   )
-        // console.log('--+22++--')
-
-
+      
         return (
             <View style={styles.container}>
                 <TabNavigator
                     tabBarStyle={{opacity: 0.9,}}
                     sceneStyle={{paddingBottom: 0}}
                 >
-                    {this._renderTab(PopularPage, FLAG_TAB.flag_popularTab, '运单XA', require('../../res/images/ic_polular.png'))}
+                    {this._renderTab(PopularPage, FLAG_TAB.flag_popularTab, '运单M', require('../../res/images/ic_polular.png'))}
                     {this._renderTab(TrendingPage, FLAG_TAB.flag_trendingTab, 'Trending', require('../../res/images/ic_trending.png'))}
                     {this._renderTab(FavoritePage, FLAG_TAB.flag_favoriteTab, 'Favorite', require('../../res/images/ic_favorite.png'))}
                     {this._renderTab(MyPage, FLAG_TAB.flag_myTab, 'My', require('../../res/images/ic_my.png'))}

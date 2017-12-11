@@ -301,7 +301,10 @@ class TrendingTab extends Component {
     }
 
     genFetchUrl(timeSpan, category) {//objective-c?since=daily
-        return API_URL + category + '?' + timeSpan.searchText;
+
+        //return 'http://47.92.72.19:8010/transorder/randomnumber';
+
+        // return API_URL + category + '?' + timeSpan.searchText;
     }
 
     loadData(timeSpan,isRefresh) {

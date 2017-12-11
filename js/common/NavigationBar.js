@@ -92,12 +92,10 @@ export default class NavigationBar extends Component {
         if (this.props.onLeftButtonClick)this.props.onLeftButtonClick();
     }
 
- // title={data.title}
+ 
 
     getButtonElement(data = {}, style) {
-
-        console.log(data)
-
+ 
         return (
             <View style={styles.navBarButton}>
                 {(!!data.props) ? data : (
@@ -113,7 +111,7 @@ export default class NavigationBar extends Component {
         );
     }
 
-//{this.props.title}
+ 
     render() {
         let statusBar = !this.props.statusBar.hidden ?
             <View style={styles.statusBar}>

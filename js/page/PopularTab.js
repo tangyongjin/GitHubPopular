@@ -17,7 +17,10 @@ import {
  
  
  
-import RepositoryCell from '../common/RepositoryCell'
+// import RepositoryCell from '../common/RepositoryCell'
+
+import TransorderCell from '../common/TransorderCell'
+
 import RepositoryDetail from './RepositoryDetail'
 import FavoriteDao from '../expand/dao/FavoriteDao'
 import DataRepository, {FLAG_STORAGE} from '../expand/dao/DataRepository'
@@ -32,6 +35,7 @@ import Utils from '../util/Utils'
 const API_URL = 'https://api.github.com/search/repositories?q='
 const QUERY_STR = '&sort=stars'
 var favoriteDao = new FavoriteDao(FLAG_STORAGE.flag_popular)
+
 var dataRepository = new DataRepository(FLAG_STORAGE.flag_popular)
 
 
@@ -113,7 +117,10 @@ export default class PopularTab extends Component {
     }
 
     genFetchUrl(category) {
-        return API_URL + category + QUERY_STR;
+
+        return 'http://47.92.72.19:8010/transorder/randomnumber?time='+ new Date();
+
+        // return API_URL + category + QUERY_STR;
     }
 
     updateState(dic) {
@@ -127,6 +134,9 @@ export default class PopularTab extends Component {
             isLoadingFail: false,
         });
         let url = this.genFetchUrl(this.props.tabLabel);
+        
+        console.log(url);
+
         dataRepository.fetchRepository(url).then((wrapData)=> {
             this.items = wrapData && wrapData.items ? wrapData.items : wrapData ? wrapData : [];
             this.getFavoriteKeys();
@@ -173,16 +183,21 @@ export default class PopularTab extends Component {
             favoriteDao.removeFavoriteItem(item.id.toString());
         }
     }
+
     renderRow(projectModel, sectionID, rowID) {
+
+        console.log(projectModel) ;
+        
         let {navigator}=this.props;
         return (
-            <RepositoryCell
+            <TransorderCell
                 key={projectModel.item.id}
                 onSelect={()=>this.onSelectRepository(projectModel)}
                 theme={this.state.theme}
                 {...{navigator}}
                 projectModel={projectModel}
-                onFavorite={(item, isFavorite)=>this.onFavorite(item, isFavorite)}/>
+                onFavorite={(item, isFavorite)=>this.onFavorite(item, isFavorite)}
+            />
         );
     }
 
@@ -195,6 +210,7 @@ export default class PopularTab extends Component {
                 renderFooter={()=> {
                     return <View style={{height: 50}}/>
                 }}
+                
                 enableEmptySections={true}
                 dataSource={this.state.dataSource}
                 refreshControl={
